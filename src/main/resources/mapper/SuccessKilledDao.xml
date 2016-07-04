@@ -7,15 +7,17 @@
 
     <!--主键冲突，报错-->
     <insert id="insertSuccessKilled">
-        INSERT ignore INTO success_killed(seckill_id,user_phone)
-        VALUES (#{seckillId},#{userphone})
+        INSERT ignore INTO success_killed(seckill_id,user_phone,state)
+        VALUES (#{seckillId},#{userphone},0)
     </insert>
 
     <select id="queryByIdWithSeckill" resultType="SuccessKilled">
         <!--根据id查询Successkilled，并携带scekill实体-->
         <!--告诉MyBatis把结果映射到SuccessKilled上-->
         <!--可以自由控制自己的SQL语句，如何去编写更高效更合理的sql语句-->
-        SELECT sk.id,sk.user_phone,sk.state,sk.create_time,
+
+        <!--将select后的查找到的字段转换为对象实体中的属性  s.id "seckill.id"-->
+        SELECT sk.user_phone,sk.state,sk.create_time,
                s.id "seckill.id",
                s.name "seckill.name",
                s.number "seckill.number",
@@ -25,5 +27,6 @@
         FROM success_killed sk
         INNER JOIN seckill s on sk.seckill_id=s.id
         WHERE sk.seckill_id=#{seckilId}
+        AND sk.user_phone=#{userphone}
     </select>
 </mapper>

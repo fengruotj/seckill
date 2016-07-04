@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-2.5.xsd " >
+
+    <!--配置整合mybatis过程-->
+    <!--1.配置数据库相关参数-->
+    <!-- 加载配置文件，支持注解的方法 -->
+    <bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <array>
+            </array>
+        </property>
+    </bean>
+    <!-- 加载配置文件，支持xml的方式-->
+    <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="locations">
+            <array>
+                <value>classpath:conn.properties</value>
+            </array>
+        </property>
+    </bean>
+    <!--2.配置数据库连接池-->
+
+    <!--Springboot 和Hibernate整合-->
+    <bean id="dataSource"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--配置连接池属性-->
+        <property name="driverClass" value="${driverClassName}">
+        </property>
+        <property name="jdbcUrl" value="${url}">
+        </property>
+        <property name="user" value="${username}">
+        </property>
+        <property name="password" value="${password}">
+        </property>
+
+        <!--连接池属性-->
+        <property name="maxPoolSize" value="30"></property>
+        <property name="minPoolSize" value="10"></property>
+        <!--关闭连接后不自动Commit-->
+        <property name="autoCommitOnClose" value="false"></property>
+        <!--连接超时时间-->
+        <property name="checkoutTimeout" value="1000"></property>
+        <!--当获取连接失败时重试次数-->
+        <property name="acquireRetryAttempts" value="2"></property>
+    </bean>
+
+    <!--3.配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据库连接池-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--配置mybatis全局配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!--扫描entity包，使用别名-->
+        <property name="typeAliasesPackage" value="com.seckill.model"></property>
+        <!--扫描sql配置文件：mapper需要xml文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+
+    <!--4.配置扫描Dao接口包，动态实现接口包，注入到spring容器中-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <!--给出扫描Dao接口包-->
+        <property name="basePackage" value="com.seckill.dao"></property>
+    </bean>
+
+    <context:component-scan base-package="com.seckill"/>
+
+</beans>

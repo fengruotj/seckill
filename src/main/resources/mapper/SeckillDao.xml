@@ -6,7 +6,7 @@
     <!--目的为Dao接口方法提供sql语言配置-->
     <update id="reduceNumber" >
         UPDATE seckill SET number=number -1
-        WHERE number>0 and id=#{seckillId} and start_time <![CDATA[ <= ]]]>  #{killTime}
+        WHERE number>0 and id=#{seckillId} and start_time <![CDATA[ <= ]]>  #{killTime}
         and end_time > #{killTime}
     </update>
     
@@ -15,7 +15,7 @@
     </select>
 
     <select id="queryAll" resultType="Seckill">
-        SELECT id,name,number,create_time,end_time,start_time FROM seckill  ORDER BY create_time
-        limit #{offet},#{limit} DESC
+        SELECT id,name,number,create_time,end_time,start_time FROM seckill  ORDER BY create_time DESC
+        limit #{offet},#{limit}
     </select>
 </mapper>

@@ -7,7 +7,6 @@ import java.util.Date;
  * Created by dello on 2016/7/3.
  */
 public class SuccessKilled implements Serializable {
-    private long id;
     private Seckill seckill;
     private long userPhone;
     private short state;
@@ -16,13 +15,6 @@ public class SuccessKilled implements Serializable {
     public SuccessKilled() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public Seckill getSeckill() {
         return seckill;
@@ -59,7 +51,6 @@ public class SuccessKilled implements Serializable {
     @Override
     public String toString() {
         return "SuccessKilled{" +
-                "id=" + id +
                 ", userPhone=" + userPhone +
                 ", state=" + state +
                 ", createTime=" + createTime +

@@ -1,0 +1,37 @@
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/oil_web_api.log</file>
+        <encoder><!-- 必须指定，否则不会往文件输出内容 -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+        <append>true</append>
+        <prudent>false</prudent>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                [ %-5level] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} [%line] - %msg%n
+            </pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+
+    <!-- Enable FILE and STDOUT appenders for all log messages.
+         By default, only log at level INFO and above. -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <root level="DEBUG">
+        <appender-ref ref="fileAppender" />
+    </root>
+</configuration>

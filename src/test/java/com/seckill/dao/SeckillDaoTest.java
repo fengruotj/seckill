@@ -3,6 +3,8 @@ package com.seckill.dao;
 import com.seckill.model.Seckill;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,6 +19,8 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/applicationContext.xml")
 public class SeckillDaoTest {
+
+    private Logger logger= LoggerFactory.getLogger(SeckillDaoTest.class);
     //注入
     @Autowired
     private SeckillDao seckillDao;
@@ -31,7 +35,7 @@ public class SeckillDaoTest {
     @Test
     public void testReduceNumber() throws Exception {
         int updateCount=seckillDao.reduceNumber(1,new Date());
-        System.out.println(updateCount);
+        logger.info(String.valueOf(updateCount));
     }
 
     @Test

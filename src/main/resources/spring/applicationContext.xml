@@ -75,4 +75,17 @@
 
     <context:component-scan base-package="com.seckill"/>
 
+    <!--配置事务管理器-->
+    <!--配置事务可以通过注解的形式注册事务
+    默认使用注解的方式注入事务
+-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!--配置基于注解的声明式事务-->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
 </beans>

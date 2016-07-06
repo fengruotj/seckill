@@ -16,6 +16,13 @@
     </properties>
 
   <dependencies>
+
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.2.2</version>
+      </dependency>
+
     <!--使用Junit4-->
     <dependency>
       <groupId>junit</groupId>

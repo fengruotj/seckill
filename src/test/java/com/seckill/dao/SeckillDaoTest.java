@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * Created by dello on 2016/7/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/applicationContext.xml")
+@ContextConfiguration("classpath:spring/spring-applicationContext.xml")
 public class SeckillDaoTest {
 
     private Logger logger= LoggerFactory.getLogger(SeckillDaoTest.class);

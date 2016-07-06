@@ -20,7 +20,7 @@ import java.util.List;
  * Created by dello on 2016/7/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/applicationContext.xml"})
+@ContextConfiguration({"classpath:spring/spring-applicationContext.xml"})
 public class SeckillServiceImplTest {
 
     private Logger logger= LoggerFactory.getLogger(SeckillServiceImplTest.class);

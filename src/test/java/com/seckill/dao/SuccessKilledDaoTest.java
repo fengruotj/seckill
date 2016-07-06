@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by dello on 2016/7/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/applicationContext.xml")
+@ContextConfiguration("classpath:spring/spring-applicationContext.xml")
 public class SuccessKilledDaoTest {
     @Autowired
     private SuccessKilledDao successKilledDao;

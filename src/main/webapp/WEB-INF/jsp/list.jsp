@@ -29,9 +29,9 @@
                             <tr>
                                 <td>${seckill.name}</td>
                                 <td>${seckill.number}</td>
-                                <td><fmt:formatDate value="${seckill.startTime}" pattern="yyyy-mmm-dd hh:mm:ss"/></td>
-                                <td><fmt:formatDate value="${seckill.endTime}" pattern="yyyy-mmm-dd hh:mm:ss"/></td>
-                                <td><fmt:formatDate value="${seckill.createTime}" pattern="yyyy-mmm-dd hh:mm:ss"/></td>
+                                <td><fmt:formatDate value="${seckill.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td><fmt:formatDate value="${seckill.endTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td><fmt:formatDate value="${seckill.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td><a class="btn btn-info" href="/seckill/${seckill.id}/detail">秒杀</a></td>
                             </tr>
                         </c:forEach>

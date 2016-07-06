@@ -1,6 +1,7 @@
 package com.seckill.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.seckill.dto.Exposer;
 import com.seckill.dto.SeckillExecution;
 import com.seckill.dto.SeckillResult;
@@ -96,7 +97,8 @@ public class SeckillController extends BaseController{
 
     @RequestMapping(value = "/time/now",method = RequestMethod.GET,produces = "application/json")
     @ResponseBody
-    public String time(){
+    public  String time(){
+        Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         SeckillResult<Date> seckillResult;
         seckillResult=new SeckillResult<Date>(true,new Date());
         return gson.toJson(seckillResult);

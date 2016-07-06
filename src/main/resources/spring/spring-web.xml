@@ -16,7 +16,12 @@
         (2)提供一系列:数据绑定，json,数字和日期支持，format，@NumberFormat,@DateTimeFormat
         -->
     <mvc:annotation-driven/>
-
+    <!--配置静态资源的访问-->
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/images/**" location="/WEB-INF/static/images/" />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/static/js/" />
+    <mvc:resources mapping="/css/**" location="/WEB-INF/static/css/" />
+    <mvc:resources mapping="/libs/**" location="/WEB-INF/static/libs/" />
     <!--2.静态资源配置，默认Servlet配置-->
     <!--
         1.加入静态资源处理：js,img,css

@@ -49,7 +49,7 @@ public class SeckillController extends BaseController{
         return "detail";
     }
 
-    @RequestMapping(value = "/{seckillId}/exposer",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "/{seckillId}/exposer",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String exposer(@PathVariable Long seckillId){
         SeckillResult<Exposer> seckillResult;
@@ -63,7 +63,7 @@ public class SeckillController extends BaseController{
         return gson.toJson(seckillResult);
     }
 
-    @RequestMapping(value = "/{seckillId}/{md5}/execution",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "/{seckillId}/{md5}/execution",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String excute(@PathVariable Long seckillId, @PathVariable String md5,
                          @CookieValue(value = "killphone",required = false) Long userPhone){
@@ -79,23 +79,23 @@ public class SeckillController extends BaseController{
         }catch (RepeatKillException e1){
             logger.error(e1.getMessage());
             SeckillExecution seckillExecution=new SeckillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);
-            seckillResult=new SeckillResult<SeckillExecution>(false,seckillExecution);
+            seckillResult=new SeckillResult<SeckillExecution>(true,seckillExecution);
             return gson.toJson(seckillResult);
         }
         catch (SeckillCloseException e2){
             logger.error(e2.getMessage());
             SeckillExecution seckillExecution=new SeckillExecution(seckillId, SeckillStateEnum.END);
-            seckillResult=new SeckillResult<SeckillExecution>(false,seckillExecution);
+            seckillResult=new SeckillResult<SeckillExecution>(true,seckillExecution);
             return gson.toJson(seckillResult);
         }
         catch (Exception e){
             logger.error(e.getMessage());
-            seckillResult=new SeckillResult<SeckillExecution>(false,e.getMessage());
+            seckillResult=new SeckillResult<SeckillExecution>(true,e.getMessage());
             return gson.toJson(seckillResult);
         }
     }
 
-    @RequestMapping(value = "/time/now",method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/time/now",method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public  String time(){
         Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();

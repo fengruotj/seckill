@@ -87,4 +87,9 @@
     <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
     <tx:annotation-driven transaction-manager="transactionManager" />
 
+    <!--RedisDao-->
+    <bean id="redisDao" class="com.seckill.dao.cache.RedisDao">
+        <constructor-arg index="0" value="localhost"></constructor-arg>
+        <constructor-arg index="1" value="6379"></constructor-arg>
+    </bean>
 </beans>

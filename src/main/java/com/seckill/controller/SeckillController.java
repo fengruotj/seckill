@@ -45,6 +45,7 @@ public class SeckillController extends BaseController{
         if(seckillById==null){
             return "forward:/seckill/list";
         }
+        logger.info("detail");
         model.addAttribute("seckill",seckillById);
         return "detail";
     }
@@ -73,7 +74,9 @@ public class SeckillController extends BaseController{
         }
         SeckillResult<SeckillExecution> seckillResult;
         try {
-            SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId, userPhone, md5);
+            //SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId, userPhone, md5);
+            //改为存储过程去秒杀
+            SeckillExecution seckillExecution = seckillService.executeSeckillProcedure(seckillId, userPhone, md5);
             seckillResult=new SeckillResult<SeckillExecution>(true,seckillExecution);
             return gson.toJson(seckillResult);
         }catch (RepeatKillException e1){

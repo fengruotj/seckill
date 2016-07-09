@@ -18,4 +18,14 @@
         SELECT id,name,number,create_time,end_time,start_time FROM seckill  ORDER BY create_time DESC
         limit #{offet},#{limit}
     </select>
+
+    <!--myBatis 调用存储过程-->
+    <select id="killByProdcedure" statementType="CALLABLE">
+        call execute_seckill(
+        #{seckillId,jdbcType=BIGINT,mode=IN},
+        #{phone,jdbcType=BIGINT,mode=IN},
+        #{killTime,jdbcType=TIMESTAMP,mode=IN},
+        #{result,jdbcType=INTEGER,mode=OUT}
+        )
+    </select>
 </mapper>
